@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import EditTaskModal from './components/ui/EditTaskModal'
+import CreateListModal from './components/ui/CreateListModal'
 import Button from './components/ui/Button'
 
 function App() {
@@ -7,18 +7,14 @@ function App() {
 
   return (
     <div style={{ padding: 40 }}>
-      <Button variant="primary" onClick={() => setOpen(true)}>
-        Abrir Edit Modal
+      <Button variant="secondary" onClick={() => setOpen(true)}>
+        + Create New List
       </Button>
-      <EditTaskModal
+      <CreateListModal
         open={open}
-        initialTitle="Asymptotic Analysis Paper"
-        initialDescription="Draft the first section covering Big O"
-        initialDate="2024-10-24"
-        initialPriority="high"
         onCancel={() => setOpen(false)}
-        onSave={(data) => {
-          console.log('saved:', data);
+        onCreate={(data) => {
+          console.log('created:', data);
           setOpen(false);
         }}
       />
