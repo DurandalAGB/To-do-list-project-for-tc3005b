@@ -1,19 +1,18 @@
-import WelcomeCard from './components/ui/WelcomeCard'
-import DueTodayCard from './components/ui/DueTodayCard'
+import { useState } from 'react'
+import ToggleCompleted from './components/ui/ToggleCompleted'
 
 function App() {
-  const todayTasks = [
-    { id: '1', title: 'Submit Thesis Draft', time: '5:00 PM', completed: false },
-    { id: '2', title: 'Weekly Groceries', time: '7:00 PM', completed: false },
-  ];
+  const [showCompleted, setShowCompleted] = useState(true);
 
   return (
-    <div style={{ padding: 40, display: 'flex', gap: 24, maxWidth: 1000 }}>
-      <WelcomeCard username="Scholar" taskCount={12} />
-      <DueTodayCard
-        tasks={todayTasks}
-        onComplete={(id) => console.log('complete', id)}
+    <div style={{ padding: 40 }}>
+      <ToggleCompleted
+        showCompleted={showCompleted}
+        onToggle={setShowCompleted}
       />
+      <p style={{ marginTop: 16 }}>
+        {showCompleted ? 'Mostrando completadas' : 'Ocultando completadas'}
+      </p>
     </div>
   )
 }
