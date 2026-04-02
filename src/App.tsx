@@ -1,18 +1,27 @@
 import { useState } from 'react'
-import ToggleCompleted from './components/ui/ToggleCompleted'
+import EditTaskModal from './components/ui/EditTaskModal'
+import Button from './components/ui/Button'
 
 function App() {
-  const [showCompleted, setShowCompleted] = useState(true);
+  const [open, setOpen] = useState(false);
 
   return (
     <div style={{ padding: 40 }}>
-      <ToggleCompleted
-        showCompleted={showCompleted}
-        onToggle={setShowCompleted}
+      <Button variant="primary" onClick={() => setOpen(true)}>
+        Abrir Edit Modal
+      </Button>
+      <EditTaskModal
+        open={open}
+        initialTitle="Asymptotic Analysis Paper"
+        initialDescription="Draft the first section covering Big O"
+        initialDate="2024-10-24"
+        initialPriority="high"
+        onCancel={() => setOpen(false)}
+        onSave={(data) => {
+          console.log('saved:', data);
+          setOpen(false);
+        }}
       />
-      <p style={{ marginTop: 16 }}>
-        {showCompleted ? 'Mostrando completadas' : 'Ocultando completadas'}
-      </p>
     </div>
   )
 }
