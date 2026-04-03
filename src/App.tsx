@@ -1,23 +1,28 @@
-import { useState } from 'react'
-import CreateListModal from './components/ui/CreateListModal'
-import Button from './components/ui/Button'
+import AboutProjectCard from './components/ui/AboutProjectCard'
+import AuthorCard from './components/ui/AuthorCard'
+import QuickStatsCard from './components/ui/QuickStatsCard'
 
 function App() {
-  const [open, setOpen] = useState(false);
-
   return (
-    <div style={{ padding: 40 }}>
-      <Button variant="secondary" onClick={() => setOpen(true)}>
-        + Create New List
-      </Button>
-      <CreateListModal
-        open={open}
-        onCancel={() => setOpen(false)}
-        onCreate={(data) => {
-          console.log('created:', data);
-          setOpen(false);
-        }}
+    <div style={{ padding: 40, display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24, maxWidth: 1100 }}>
+      <AboutProjectCard
+        description="Scholarly Atelier is more than just a task manager; it is an educational endeavor built to explore the boundaries of modern frontend development."
+        quote="An educational todo application designed as a practical playground for mastering React's component-based architecture and state management."
+        secondParagraph="By blending the focused environment of a private library with contemporary web technologies, this project demonstrates how aesthetic design and functional logic can coexist harmoniously."
+        pills={['React 18', 'Tailwind CSS', 'Component-Driven Design']}
       />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <AuthorCard
+          name="Angel Bosquez"
+          role="Software Engineer Student"
+        />
+        <QuickStatsCard
+          stats={[
+            { icon: 'H', label: 'Favorite anime', value: 'JJK ' },
+            { icon: 'L', label: 'Hobbies', value: 'Nothing lmao' },
+          ]}
+        />
+      </div>
     </div>
   )
 }
